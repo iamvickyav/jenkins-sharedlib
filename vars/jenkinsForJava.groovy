@@ -23,17 +23,27 @@ def call(String repoUrl, boolean publishArtifact=false) {
                     sh "mvn clean"
                 }
             }
-            stage("Running Testcase") {
-                steps {
-                    sh "mvn test"
-                }
+            if(env.JOB_NAME.contains("deploy")){
+                packageArtifact()
+            } else if(env.JOB_NAME.contains("test")) {
+                buildAndTest()
             }
-            stage("Packing Application") {
-                steps {
-                    sh "mvn package -DskipTests"
-                    sh "echo Build Successful"
-                }
-            }
+        }
+    }
+}
+def packageArtifact(){
+    stage("Packing Application") {
+        steps {
+            sh "mvn package -DskipTests"
+            sh "echo Build Successful"
+        }
+    }
+}
+
+def buildAndTest(){
+     stage("Running Testcase") {
+        steps {
+            sh "mvn test"
         }
     }
 }
