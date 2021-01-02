@@ -1,4 +1,4 @@
-def call(String gitUrl) {
+def call(String gitUrl='https://github.com/iamvickyav/spring-boot-data-H2-embedded.git') {
     pipeline {
         agent any
         tools { 
@@ -15,7 +15,7 @@ def call(String gitUrl) {
             stage ('Download Project') {
                 steps {
                     git branch: 'master',
-                        url: 'https://github.com/iamvickyav/spring-boot-data-H2-embedded.git'
+                        url: "${gitUrl}"
 
                     sh "ls -lat"
                 }
