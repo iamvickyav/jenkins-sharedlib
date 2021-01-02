@@ -17,7 +17,7 @@ def call(String gitUrl) {
 
             stage ('Build') {
                 steps {
-                    echo 'This is a minimal pipeline.'
+                    sh 'mvn --version'
                 }
             }
         }
