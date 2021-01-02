@@ -30,7 +30,7 @@ def call(String repoUrl, boolean publishArtifact=false) {
                     }
                 }
                 steps {
-                    sh "mvn test"
+                    sh "mvn verify"
                 }
             }
             stage("Packing Application") {
@@ -41,7 +41,6 @@ def call(String repoUrl, boolean publishArtifact=false) {
                 }
                 steps {
                     sh "mvn package -DskipTests"
-                    sh "echo Build Successful"
                 }
             }
         }
