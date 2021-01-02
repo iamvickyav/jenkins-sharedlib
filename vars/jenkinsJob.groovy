@@ -13,7 +13,6 @@ def call(String gitUrl) {
                 }
             }
             stage ('Download Project') {
-                stage('Checkout external proj') {
                 steps {
                     git branch: 'master',
                         url: 'https://github.com/iamvickyav/spring-boot-data-H2-embedded.git'
