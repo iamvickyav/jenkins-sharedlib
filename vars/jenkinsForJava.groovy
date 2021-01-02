@@ -15,7 +15,7 @@ def call(String repoUrl, boolean publishArtifact=false) {
             stage("Checkout Code") {
                 steps {
                     git branch: 'master',
-                        url: "${gitUrl}"
+                        url: "${repoUrl}"
                 }
             }
             stage("Cleaning workspace") {
