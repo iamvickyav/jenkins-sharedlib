@@ -7,8 +7,10 @@ def call(String repoUrl, boolean publishArtifact=false) {
         }
         stages {
             stage("Tools initialization") {
-                sh "mvn --version"
-                sh "java -version"
+                steps {
+                    sh "mvn --version"
+                    sh "java -version"
+                }
             }
             stage("Checkout Code") {
                 steps {
