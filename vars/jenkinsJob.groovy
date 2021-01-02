@@ -6,18 +6,19 @@ def call(String gitUrl) {
             jdk 'jdk8' 
         }
         stages {
-            stage ('Initialize') {
-                steps {
-                    sh '''
-                        echo "PATH = ${PATH}"
-                        echo "M2_HOME = ${M2_HOME}"
-                    ''' 
-                }
-            }
-
-            stage ('Build') {
+            stage ('Check Maven & Java') {
                 steps {
                     sh 'mvn --version'
+                    sh 'java -version'
+                }
+            }
+            stage ('Download Project') {
+                stage('Checkout external proj') {
+                steps {
+                    git branch: 'master',
+                        url: 'https://github.com/iamvickyav/spring-boot-data-H2-embedded.git'
+
+                    sh "ls -lat"
                 }
             }
         }
