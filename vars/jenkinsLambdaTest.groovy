@@ -8,7 +8,7 @@ def call(String repoUrl) {
         environment {
             USER_NAME  = 'vickyavw.10'
             ACCESS_KEY = 'ic341dZtl3tMPEa4pToJEfMUnet4cbs4Gpdd9VF7HqCCf7rYtb'
-            USER = credentials('lambda-test-secret')
+            USER = credentials('lambda-test-secrets')
         }
         stages {
             stage("Tools initialization") {
