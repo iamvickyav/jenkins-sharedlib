@@ -20,7 +20,7 @@ def call(String repoUrl) {
             }
             stage("Running Testcase") {
                 steps {
-                    sh "mvn -Dusername=$LT_USERNAME -DaccessKey=$LT_ACCESS_KEY test"
+                    sh "mvn -Dusername=${LT_USERNAME} -DaccessKey=${LT_ACCESS_KEY} test"
                 }
             }
         }
