@@ -6,9 +6,7 @@ def call(String repoUrl) {
             jdk 'jdk8' 
         }
         environment {
-            USER_NAME  = 'vickyavw.10'
-            ACCESS_KEY = 'ic341dZtl3tMPEa4pToJEfMUnet4cbs4Gpdd9VF7HqCCf7rYtb'
-            USER = credentials('lambda-test-secrets')
+            LAMBDA_TEST_CRED = credentials('lambda-test-secrets')
         }
         stages {
             stage("Tools initialization") {
@@ -23,10 +21,9 @@ def call(String repoUrl) {
                     url: "${repoUrl}"
                 }
             }
-            stage("Running Testcase") {
+            stage("Running in LambdaTest Cloud") {
                 steps {
-                    sh "echo $USER"
-                    sh "mvn -Dusername=${USER_USR} -DaccessKey=${USER_PSW} test"
+                    sh "mvn -Dusername=${LAMBDA_TEST_CRED_USR} -DaccessKey=${LAMBDA_TEST_CRED_PSW} test"
                 }
             }
         }
