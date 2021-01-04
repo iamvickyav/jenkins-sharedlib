@@ -8,6 +8,7 @@ def call(String repoUrl) {
         environment {
             USER_NAME  = 'vickyavw.10'
             ACCESS_KEY = 'ic341dZtl3tMPEa4pToJEfMUnet4cbs4Gpdd9VF7HqCCf7rYtb'
+            USER = credentials('lambda-test-secret')
         }
         stages {
             stage("Tools initialization") {
@@ -24,7 +25,7 @@ def call(String repoUrl) {
             }
             stage("Running Testcase") {
                 steps {
-                    sh "echo ${LT_USERNAME}"
+                    sh "echo $USER"
                     sh "mvn -Dusername=${env.LT_USERNAME} -DaccessKey=${env.LT_ACCESS_KEY} test"
                 }
             }
